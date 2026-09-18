@@ -20,8 +20,7 @@ function kor(kozeppont, sugar, szin, megj) {
     k.setAttribute("r", sugar); // <circle cx="50" cy="100" r="30">
     k.setAttribute("fill", szin); // <circle cx="50" cy="100" r="30" fill="red">
     vaszon.appendChild(k);
-    if(megj.length>0)
-        k.setAttribute("title", megj);
+    k.setAttribute("title", megj);
     return k;
 }
 

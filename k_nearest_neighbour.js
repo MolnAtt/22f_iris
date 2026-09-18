@@ -9,8 +9,8 @@
  * @returns 
  */
 function sorbarendezes(lista, X, Y, tavolsagfv ){
-    lista.sort((a, b) =>   tavolsagfv([X,Y],[a.sepal_length, a.sepal_width])
-                         - tavolsagfv([X,Y],[b.sepal_length, b.sepal_width]));    
+    return lista.toSorted((a, b) =>   tavolsagfv([X,Y],[a.sl, a.sw])
+                                    - tavolsagfv([X,Y],[b.sl, b.sw]));
 }
 
 
@@ -47,6 +47,14 @@ function maximumkereses_dict(szotar){
     return max_kulcs;
 }
 
+function szlajsz(lista, start, end){
+    let s = [];
+    for (let i = start; i < end; i++) {
+        s.push(lista[i]);
+    }
+    return s;
+}
+
 
 function k_nearest_neighbours(lista, this_petal_length, this_petal_width, K){
     // supervised learning
@@ -54,11 +62,14 @@ function k_nearest_neighbours(lista, this_petal_length, this_petal_width, K){
     // 1. vesszük a K db legközelebbi pontot.
     // 1.1      sorbarendezed a távolságképlet alapján a pontokat
     let l = sorbarendezes(lista, this_petal_length, this_petal_width, Euklideszi_tavolsagnegyzet);
+    // console.log('sorbarendezett lista:',  l);
     // 1.2      Megnézed az első K db elemet.
-    let elso_K = l.slice(K);  
+    let elso_K = szlajsz(l, 0, K);
+    console.log('elso_K:', elso_K);
     // 2. Megnézzük, hogy melyik milyen típus.
     // 2.1      Csoportosítás/dictionary...
-    let csoportok = csoportosit(l);
+    let csoportok = csoportosit(elso_K);
+    console.log(csoportok);
     // 3. A legtöbb "szavazatot" kapó típusra tippelünk.
     // 3.1      Maximumkeresés a dictionary-n
     let tipp = maximumkereses_dict(csoportok);

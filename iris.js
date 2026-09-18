@@ -25,6 +25,10 @@ class Iris {
     console.log(`Nőszirmok beolvasva: ${noszirmok.length} db`);
     return noszirmok;
   }
+
+  toString() {
+    return `Iris(id=${this.id}, sl=${this.sl}, sw=${this.sw}, tipus=${this.tipus})`;
+  }
 }
 
 
@@ -47,6 +51,9 @@ let szine = {
 }
 
 
+let mertekx = 100;
+let merteky = 100;
+
 /**
  * Ha valaki rákattint a képre, akkor megmondja, hogy az alapján ott egy pont milyen nőszirom lenne
  * @param {MouseEvent} e 
@@ -61,10 +68,12 @@ function katt(e){
         "Y": e.clientY - br.y,
     };
     console.log(a);
-    // let petal_width  = a.X/mertekx;
-    // let petal_length = a.Y/merteky;
-    // console.log([petal_width,petal_length])
-    // let nsz_t = k_nearest_neighbours(noszirmok, petal_length, petal_width, 5);
+    let sepal_length = a.X/mertekx;
+    let sepal_width  = a.Y/merteky;
+    console.log([sepal_length, sepal_width]);
+    let nsz_t = k_nearest_neighbours(noszirmok, sepal_length, sepal_width, 5);
     
-    // console.log(nsz_t);
+    console.log(nsz_t);
 }
+
+vaszon.addEventListener('click', katt);
