@@ -45,3 +45,26 @@ let szine = {
     'Iris-versicolor': '#0000ff80',
     'Iris-virginica': '#00900080',
 }
+
+
+/**
+ * Ha valaki rákattint a képre, akkor megmondja, hogy az alapján ott egy pont milyen nőszirom lenne
+ * @param {MouseEvent} e 
+ */
+function katt(e){
+    e.preventDefault();
+    let br = vaszon.getBoundingClientRect();
+    console.log(br);
+    console.log([e.clientX, e.clientY]);
+    let a = {
+        "X": e.clientX - br.x, 
+        "Y": e.clientY - br.y,
+    };
+    console.log(a);
+    // let petal_width  = a.X/mertekx;
+    // let petal_length = a.Y/merteky;
+    // console.log([petal_width,petal_length])
+    // let nsz_t = k_nearest_neighbours(noszirmok, petal_length, petal_width, 5);
+    
+    // console.log(nsz_t);
+}
