@@ -13,14 +13,41 @@ function vonal(p,q,vastagsag,szin){
     return v;
 }
 
-function kor(kozeppont, sugar, szin, megj) {
+function kor(kozeppont, sugar, szin, adatok) {
     let k = document.createElementNS('http://www.w3.org/2000/svg','circle');  // <circle>
     k.setAttribute("cx", kozeppont[0]); // <circle cx="50">
     k.setAttribute("cy", kozeppont[1]); // <circle cx="50" cy="100">
     k.setAttribute("r", sugar); // <circle cx="50" cy="100" r="30">
     k.setAttribute("fill", szin); // <circle cx="50" cy="100" r="30" fill="red">
+    k.style.cursor = 'pointer';
     vaszon.appendChild(k);
-    k.setAttribute("title", megj);
+
+    const info = typeof adatok === 'string'
+        ? adatok
+        : `Iris(id=${adatok.id}, tipus=${adatok.tipus}, sl=${adatok.sl}, sw=${adatok.sw})`;
+
+    const tooltip = document.getElementById('tooltip');
+
+    k.addEventListener('mouseenter', (e) => {
+        if (!tooltip) return;
+        tooltip.textContent = info;
+        tooltip.style.display = 'block';
+        tooltip.style.left = `${e.clientX + 12}px`;
+        tooltip.style.top = `${e.clientY + 12}px`;
+    });
+
+    k.addEventListener('mousemove', (e) => {
+        if (!tooltip || tooltip.style.display === 'none') return;
+        tooltip.style.left = `${e.clientX + 12}px`;
+        tooltip.style.top = `${e.clientY + 12}px`;
+    });
+
+    k.addEventListener('mouseleave', () => {
+        if (tooltip) {
+            tooltip.style.display = 'none';
+        }
+    });
+
     return k;
 }
 

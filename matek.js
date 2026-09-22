@@ -6,7 +6,7 @@
  * @returns {number}
  */
 function Euklideszi_tavolsag(P, Q){
-    return Math.sqrt(Euklideszi_tavolsagnegyzet);
+    return Math.sqrt(Euklideszi_tavolsagnegyzet(P,Q));
 }
 
 /**

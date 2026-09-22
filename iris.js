@@ -40,7 +40,7 @@ beolvasgomb.addEventListener('click', (x) => {
     noszirmok = Iris.Beolvas_csv(adatok.value);
 
     for (const noszirom of noszirmok) {
-        kor([(noszirom.sl-4)*200, (noszirom.sw-1)*200], 5, szine[noszirom.tipus], `id: ${noszirom.id}`);
+        kor([(noszirom.sl-4)*200, (noszirom.sw-1)*200], 5, szine[noszirom.tipus], noszirom);
     }
 });
 

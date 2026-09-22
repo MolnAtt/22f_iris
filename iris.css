@@ -3,6 +3,20 @@
     grid-template-columns: auto auto;
 }
 
+#tooltip {
+    position: fixed;
+    display: none;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font: 12px sans-serif;
+    line-height: 1.4;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
 #kezelopanel{
     display:grid;
     grid-template-rows: auto auto;
