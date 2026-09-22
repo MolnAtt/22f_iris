@@ -19,7 +19,7 @@ function csere(t, i, j){
 }
 
 /**
- * Megkeveri a t tömb elemeit. Fisher-Yates-Knuth algoritmus.
+ * Megkeveri a t tömb elemeit. Fisher-Yates-Knuth algoritmus. Felhasználja a csere és véletlen egész függvényeket!
  * @param {Array} t
  */
 function kever(t){
@@ -36,7 +36,7 @@ function masolat(t){
 }
 
 /**
- * Kiválaszt K darab véletlenszerű elemet a mintából, visszatevés nélkül.
+ * Kiválaszt K darab véletlenszerű elemet a mintából, visszatevés nélkül. Felhasználja a keverést!
  * @param {number} K 
  * @param {Array<Noszirom>} adatok
  * @returns {Array<Noszirom>}

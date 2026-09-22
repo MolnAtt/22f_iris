@@ -50,10 +50,6 @@ let szine = {
     'Iris-virginica': '#00900080',
 }
 
-
-let mertekx = 100;
-let merteky = 100;
-
 /**
  * Ha valaki rákattint a képre, akkor megmondja, hogy az alapján ott egy pont milyen nőszirom lenne
  * @param {MouseEvent} e 
@@ -68,8 +64,8 @@ function katt(e){
         "Y": e.clientY - br.y,
     };
     console.log(a);
-    let sepal_length = a.X/mertekx;
-    let sepal_width  = a.Y/merteky;
+    let sepal_length = a.X / 200 + 4; // vö. a beolvasgomb addeventlistenerjével!
+    let sepal_width  = a.Y / 200 + 1; // vö. a beolvasgomb addeventlistenerjével!
     console.log([sepal_length, sepal_width]);
     let nsz_t = k_nearest_neighbours(noszirmok, sepal_length, sepal_width, 5);
     
