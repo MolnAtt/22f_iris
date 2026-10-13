@@ -13,6 +13,27 @@ function vonal(p,q,vastagsag,szin){
     return v;
 }
 
+
+function kereszt(P, m, szin){
+    let l1 = document.createElementNS('http://www.w3.org/2000/svg','line');  // <line>
+    l1.setAttribute('x1', P[0]-m/2);
+    l1.setAttribute('x2', P[0]+m/2);
+    l1.setAttribute('y1', P[1]-m/2);
+    l1.setAttribute('y2', P[1]+m/2);
+    l1.setAttribute('stroke', szin);
+    l1.setAttribute('stroke-width', 2);
+    vaszon.appendChild(l1);
+
+    let l2 = document.createElementNS('http://www.w3.org/2000/svg','line');  // <line>    
+    l2.setAttribute('x1', P[0]+m/2);
+    l2.setAttribute('x2', P[0]-m/2);
+    l2.setAttribute('y1', P[1]-m/2);
+    l2.setAttribute('y2', P[1]+m/2);
+    l2.setAttribute('stroke', szin);
+    l2.setAttribute('stroke-width', 2);
+    vaszon.appendChild(l2);
+}
+
 function kor(kozeppont, sugar, szin, adatok) {
     let k = document.createElementNS('http://www.w3.org/2000/svg','circle');  // <circle>
     k.setAttribute("cx", kozeppont[0]); // <circle cx="50">

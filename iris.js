@@ -40,6 +40,10 @@ beolvasgomb.addEventListener('click', (x) => {
     noszirmok = Iris.Beolvas_csv(adatok.value);
 
     for (const noszirom of noszirmok) {
+      kor([(noszirom.sl-4)*200, (noszirom.sw-1)*200], 5, "#FFFFFF", noszirom);      
+    }
+
+    for (const noszirom of noszirmok) {
         kor([(noszirom.sl-4)*200, (noszirom.sw-1)*200], 5, szine[noszirom.tipus], noszirom);
     }
 });
@@ -73,3 +77,56 @@ function katt(e){
 }
 
 vaszon.addEventListener('click', katt);
+
+let kategoriaszaminput = document.getElementById('kategoriaszam_input');
+let iteracioszaminput = document.getElementById('iteracioszam_input');
+let kategorizalasgomb = document.getElementById('kategorizalasgomb');
+let beolvasgomb2 = document.getElementById('beolvasgomb2');
+
+
+beolvasgomb2.addEventListener('click', (x) => {
+    noszirmok = Iris.Beolvas_csv(adatok.value);
+
+    for (const noszirom of noszirmok) {
+      kor([(noszirom.sl-4)*200, (noszirom.sw-1)*200], 5, "#FFFFFF", noszirom);      
+    }
+    
+    for (const noszirom of noszirmok) {
+      kor([(noszirom.sl-4)*200, (noszirom.sw-1)*200], 5, "#00000080", noszirom);
+    }
+});
+
+kategorizalasgomb.addEventListener('click', (e) => {
+  let K = Number(kategoriaszaminput.value);
+  let I = Number(iteracioszaminput.value);
+  let [legeslegjobb_centroidok_listája, legeslegjobb_csoportok] = k_means_clustering(noszirmok, K, I);
+
+  for (let i = 0; i < legeslegjobb_centroidok_listája.length; i++) {  
+      console.log(`--------- ${i}. iteráció ------------`)
+      for (let j = 0; j < legeslegjobb_centroidok_listája[i].length; j++) {
+        let [x,y] = legeslegjobb_centroidok_listája[i][j];
+        console.log(`${j+1}. centroid a ${i+1}. iterációban: (${x},${y})`);
+        kereszt([(x-4)*200, (y-1)*200], 10, szinek[j]);
+        console.log('---------------------')
+      }    
+      console.log('---------------------')
+  }
+
+  // Törlés egyszer: minden pontot fehérre rajzolunk.
+  for (const noszirom of noszirmok) {
+    kor([(noszirom.sl-4)*200, (noszirom.sw-1)*200], 5, 'white', noszirom);
+  }
+
+  // Az utolsó (konvergens) klaszterezés eredményét színezzük.
+  const utolsoKlasztercsoport = legeslegjobb_csoportok[legeslegjobb_csoportok.length - 1] || [];
+  for (let j = 0; j < utolsoKlasztercsoport.length; j++) {
+    for (const noszirom of utolsoKlasztercsoport[j]) {
+      kor([(noszirom.sl-4)*200, (noszirom.sw-1)*200], 5, szinek[j], noszirom);
+    }
+  }
+
+
+});
+
+let szinek = ['red', 'blue', 'green', 'magenta', 'cyan', 'yellow', 'khaki', 'brown', 'pink', 'purple', 'violet'];
+
